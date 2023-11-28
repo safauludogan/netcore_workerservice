@@ -1,6 +1,5 @@
 using DataAccess;
 using DataAccess.DBModel;
-using Serilog;
 
 namespace WindowsServiceDEKA
 {

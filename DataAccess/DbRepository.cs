@@ -25,7 +25,7 @@ namespace DataAccess
             {
                 try
                 {
-                    var personels = _context.PersonelTransactions.ToList();
+                    var personels = _context.PersonelTransactions.AsNoTracking().ToList();
                     if (personels != null)
                         return personels;
                     else
