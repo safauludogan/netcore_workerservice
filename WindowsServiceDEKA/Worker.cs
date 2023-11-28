@@ -24,7 +24,7 @@ namespace WindowsServiceDEKA
                     
                 }
                 PrintUserInfo(dbRepository.GetAllPersonel());
-                await Task.Delay(3000, stoppingToken);
+                await Task.Delay(10000, stoppingToken);
             }
         }
 
@@ -32,7 +32,6 @@ namespace WindowsServiceDEKA
         {
             foreach (var personel in personels)
             {
-                
                 if (personel.Aktif != null && personel.Aktif.Equals("Evet"))
                     _logger.LogInformation($"PersonelID: {personel.PersonelID} --- Aktif durum: {personel.Kaynak} --- Tarih: {personel.Tarih}");
             }
