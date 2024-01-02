@@ -1,10 +1,5 @@
 ﻿using DataAccess.DBModel;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
@@ -37,5 +32,24 @@ namespace DataAccess
                 }
             }
         }
-    }
+
+		public List<MikroIdenfit> GetMicroDatas()
+		{
+			using (_context = new DataContext(GetAllOptions()))
+			{
+				try
+				{
+					var microDatas = _context.MikroIdenfits.AsNoTracking().ToList();
+					if (microDatas != null)
+						return microDatas;
+					else
+						return new List<MikroIdenfit>();
+				}
+				catch (Exception ex)
+				{
+					throw;
+				}
+			}
+		}
+	}
 }
