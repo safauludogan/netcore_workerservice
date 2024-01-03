@@ -14,17 +14,17 @@ namespace DataAccess
             return optionBuilder.Options;
         }
 
-        public List<PersonelTransaction> GetAllPersonel()
+        public List<Employee> GetAllEmployees()
         {
             using (_context = new DataContext(GetAllOptions()))
             {
                 try
                 {
-                    var personels = _context.PersonelTransactions.AsNoTracking().ToList();
-                    if (personels != null)
-                        return personels;
+                    var employees = _context.Employees.AsNoTracking().ToList();
+                    if (employees != null)
+                        return employees;
                     else
-                        return new List<PersonelTransaction>();
+                        return new List<Employee>();
                 }
                 catch (Exception ex)
                 {
@@ -33,9 +33,9 @@ namespace DataAccess
             }
         }
 
-		public List<MikroIdenfit> GetMicroDatas()
+		public void GetMicroDatas()
 		{
-			using (_context = new DataContext(GetAllOptions()))
+			/*using (_context = new DataContext(GetAllOptions()))
 			{
 				try
 				{
@@ -49,7 +49,7 @@ namespace DataAccess
 				{
 					throw;
 				}
-			}
+			}*/
 		}
 	}
 }
