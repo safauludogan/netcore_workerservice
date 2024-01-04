@@ -8,9 +8,9 @@ namespace DataAccess.Base.DB.Concrete
 {
 	public class RepositoryService<T> : IRepositoryService<T> where T : class, IEntity, new()
 	{
-		private DbHelper _dbHelper;
+		private IDbHelper _dbHelper;
 
-		public  RepositoryService(DbHelper dbHelper)
+		public RepositoryService(IDbHelper dbHelper)
 		{
 			_dbHelper = dbHelper;
 		}
@@ -33,7 +33,7 @@ namespace DataAccess.Base.DB.Concrete
 		{
 			using (var _context = new DataContext(_dbHelper.GetOptions()))
 			{
-				return await _context.Set<T>().ToListAsync();
+				return filter == null ? await _context.Set<T>().ToListAsync() : await _context.Set<T>().Where(filter).ToListAsync();
 			}
 		}
 

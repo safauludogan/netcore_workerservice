@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Helper
 {
-	public abstract class DbHelper
+	public class DbHelper : IDbHelper
 	{
-		public virtual DbContextOptions<DataContext> GetOptions()
+		public DbContextOptions<DataContext> GetOptions()
 		{
 			var optionBuilder = new DbContextOptionsBuilder<DataContext>();
 			optionBuilder.UseSqlServer(AppSettings.ConnectionString);

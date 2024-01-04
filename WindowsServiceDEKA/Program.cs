@@ -31,7 +31,7 @@ try
                 options.UseSqlServer(AppSettings.ConnectionString));
 
             services.AddServices();
-            //services.DataAccessServices();
+            services.DataAccessServices();
 
 		})
         .UseSerilog()

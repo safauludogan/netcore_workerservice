@@ -7,8 +7,8 @@ namespace DataAccess.Repositories.Concrete
 {
 	public class EmployeeRepository : RepositoryService<Employee>, IEmployeeRepository
 	{
-		//private readonly DbHelper _dbHelper;
-		public EmployeeRepository(DbHelper dbHelper) : base(dbHelper)
+		//private readonly IDbHelper _dbHelper;
+		public EmployeeRepository(IDbHelper dbHelper) : base(dbHelper)
 		{
 			//_dbHelper = dbHelper;
 		}
