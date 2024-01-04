@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using WindowsServiceDEKA;
+using Service;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Infinite)
@@ -22,10 +23,17 @@ try
 
             AppSettings.Configuration = context.Configuration;
             AppSettings.ConnectionString = context.Configuration.GetConnectionString("DefaultConnection")!;
+            AppSettings.BaseUrl = context.Configuration["API:BaseUrl"];
+			AppSettings.ApiUsername = context.Configuration["API:username"];
+			AppSettings.ApiPassword = context.Configuration["API:password"];
 
-            services.AddDbContext<DataContext>(options =>
+			services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(AppSettings.ConnectionString));
-        })
+
+            services.AddServices();
+            //services.DataAccessServices();
+
+		})
         .UseSerilog()
         .Build();
 

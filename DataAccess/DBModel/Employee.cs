@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DataAccess.Base;
 
 namespace DataAccess.DBModel;
 
-public partial class Employee
+public partial class Employee : IEntity
 {
     public string? StaffNumber { get; set; }
 
