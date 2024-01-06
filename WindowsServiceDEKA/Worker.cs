@@ -1,10 +1,10 @@
 using DataAccess.Repositories.Abstract;
 using DataAccess.Repositories.Concrete;
-using Service.Abstract;
+using Service.Idenfit.Login.Abstract;
 
 namespace WindowsServiceDEKA
 {
-	public class Worker : BackgroundService
+    public class Worker : BackgroundService
 	{
 		private readonly ILogger<Worker> _logger;
 		private readonly IAuthanticationService _authanticationService;
@@ -15,6 +15,7 @@ namespace WindowsServiceDEKA
 			_logger = logger;
 			_authanticationService = authanticationService;
 			_employeeRepository = employeeRepository;
+			_ = login();
 		}
 
 		protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -25,11 +26,17 @@ namespace WindowsServiceDEKA
 				{
 
 				}
-				await _authanticationService.Login();
-				await GetEmployees();
+				//await GetEmployees();
 				await Task.Delay(3000, stoppingToken);
 
 			}
+		}
+
+
+		public async Task login()
+		{
+			await _authanticationService.Login();
+
 		}
 
 		private async Task GetEmployees()
